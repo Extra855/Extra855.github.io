@@ -17,6 +17,20 @@ const gifs = [
     "assets/images/1-opt.webp",
     "assets/images/3-opt.webp"
 ];
+
+// // Preload all webp images from gifs array
+// gifs.forEach(src => {
+//     const img = new Image();
+//     img.src = src;
+// });
+
+// at top of file
+const preloaded = gifs.map(src => {
+    const img = new Image();
+    img.src = src;
+    return img;
+});
+
 // array of messages
 const buttonMessages = [
     "Are you sure??", "please", "PLEASE", "You can't do this to me!", "You can't do this to me!"
@@ -24,9 +38,15 @@ const buttonMessages = [
 
 // no button clicked
 noButton.addEventListener("click", () => {
-    if (noClicks < maxNoClicks) {
+    // if (noClicks < maxNoClicks) {
+    //     // change image
+    //     gifElement.src = gifs[noClicks];
+    // }
+
+    if (noClicks < preloaded.length) {
         // change image
-        gifElement.src = gifs[noClicks];
+        // gifElement.src = gifs[noClicks];
+        gifElement.src = preloaded[noClicks].src;
     }
 
     // change no button text
